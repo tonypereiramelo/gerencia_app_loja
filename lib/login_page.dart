@@ -40,7 +40,7 @@ class _LoginPageState extends State<LoginPage> {
               TextFormField(
                 decoration: InputDecoration(
                   icon: Icon(
-                    Icons.password,
+                    Icons.lock,
                     color: Colors.pinkAccent,
                   ),
                   hintText: 'Entre com sua senha',
@@ -48,7 +48,22 @@ class _LoginPageState extends State<LoginPage> {
                   labelText: 'Senha',
                   labelStyle: TextStyle(color: Colors.pinkAccent),
                 ),
-              )
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              ElevatedButton(
+                onPressed: () {},
+                child: Text('Entrar'),
+                style: ElevatedButton.styleFrom(
+                  onPrimary: Colors.white,
+                  primary: Colors.pinkAccent,
+                  fixedSize: Size(
+                    MediaQuery.of(context).size.width,
+                    25,
+                  ),
+                ),
+              ),
             ],
           ),
         ),
