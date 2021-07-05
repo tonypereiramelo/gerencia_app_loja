@@ -12,6 +12,9 @@ class LoginBloc extends BlocBase with LoginValidator {
   Stream<String> get outPassword =>
       _passwordController.stream.transform(validatePassword);
 
+  Function(String) get changeEmail => _emailController.sink.add;
+  Function(String) get changePassword => _passwordController.sink.add;
+
   @override
   void dispose() {
     super.dispose();
