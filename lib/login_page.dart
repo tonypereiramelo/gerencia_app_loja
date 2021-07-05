@@ -22,8 +22,32 @@ class _LoginPageState extends State<LoginPage> {
             children: <Widget>[
               Icon(
                 Icons.store_mall_directory,
-                color: Colors.redAccent,
+                color: Colors.pinkAccent,
                 size: 160,
+              ),
+              TextFormField(
+                decoration: InputDecoration(
+                  icon: Icon(
+                    Icons.person,
+                    color: Colors.pinkAccent,
+                  ),
+                  hintText: 'Entre com seu usuário',
+                  hintStyle: TextStyle(color: Colors.white),
+                  labelText: 'Usuário',
+                  labelStyle: TextStyle(color: Colors.pinkAccent),
+                ),
+              ),
+              TextFormField(
+                decoration: InputDecoration(
+                  icon: Icon(
+                    Icons.password,
+                    color: Colors.pinkAccent,
+                  ),
+                  hintText: 'Entre com sua senha',
+                  hintStyle: TextStyle(color: Colors.white),
+                  labelText: 'Senha',
+                  labelStyle: TextStyle(color: Colors.pinkAccent),
+                ),
               )
             ],
           ),
