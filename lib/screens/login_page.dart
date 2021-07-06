@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gerencia_app_loja/blocs/login_bloc.dart';
+import 'package:gerencia_app_loja/screens/home_screen.dart';
 import 'package:gerencia_app_loja/widgets/input_field.dart';
 
 class LoginPage extends StatefulWidget {
@@ -11,6 +12,31 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final _loginBloc = LoginBloc();
+
+  @override
+  void initState() {
+    super.initState();
+
+    _loginBloc.outState.listen((state) {
+      switch (state) {
+        case LoginState.SUCESS:
+          Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (context) => HomeScreen()));
+          break;
+        case LoginState.FAIL:
+          showDialog(
+              context: context,
+              builder: (context) => AlertDialog(
+                    title: Text('Erro'),
+                    content: Text('Voçê não possui privilégios necessários'),
+                  ));
+          break;
+        case LoginState.LOADING:
+        case LoginState.IDLE:
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +45,6 @@ class _LoginPageState extends State<LoginPage> {
           stream: _loginBloc.outState,
           initialData: LoginState.LOADING,
           builder: (context, snapshot) {
-            print(snapshot.data);
             switch (snapshot.data!) {
               case LoginState.LOADING:
                 return Center(
