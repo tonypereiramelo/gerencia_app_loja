@@ -51,18 +51,22 @@ class _LoginPageState extends State<LoginPage> {
                   SizedBox(
                     height: 20,
                   ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: Text('Entrar'),
-                    style: ElevatedButton.styleFrom(
-                      onPrimary: Colors.white,
-                      primary: Colors.pinkAccent,
-                      fixedSize: Size(
-                        MediaQuery.of(context).size.width,
-                        50,
-                      ),
-                    ),
-                  ),
+                  StreamBuilder<bool>(
+                      stream: _loginBloc.outSubmitValid,
+                      builder: (context, snapshot) {
+                        return ElevatedButton(
+                          onPressed: snapshot.hasData ? () {} : null,
+                          child: Text('Entrar'),
+                          style: ElevatedButton.styleFrom(
+                            onPrimary: Colors.white,
+                            primary: Colors.pinkAccent,
+                            fixedSize: Size(
+                              MediaQuery.of(context).size.width,
+                              50,
+                            ),
+                          ),
+                        );
+                      }),
                 ],
               ),
             ),
