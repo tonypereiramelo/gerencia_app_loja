@@ -64,6 +64,7 @@ class _LoginPageState extends State<LoginPage> {
                               MediaQuery.of(context).size.width,
                               50,
                             ),
+                            onSurface: Colors.pinkAccent,
                           ),
                         );
                       }),

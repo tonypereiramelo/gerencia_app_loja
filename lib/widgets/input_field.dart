@@ -24,6 +24,7 @@ class InputField extends StatelessWidget {
         stream: stream,
         builder: (context, snapshot) {
           return TextField(
+            onChanged: onChange,
             decoration: InputDecoration(
               icon: Icon(
                 icon,
