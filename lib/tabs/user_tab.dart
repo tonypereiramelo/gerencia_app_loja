@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gerencia_app_loja/widgets/user_tile.dart';
 
 class UserTab extends StatelessWidget {
   const UserTab({Key? key}) : super(key: key);
@@ -26,12 +27,12 @@ class UserTab extends StatelessWidget {
         Expanded(
           child: ListView.separated(
             itemBuilder: (context, index) {
-              return ListTile(
-                title: Text('Test $index'),
-              );
+              return UserTile();
             },
             separatorBuilder: (context, index) {
-              return Divider();
+              return Divider(
+                color: Colors.white,
+              );
             },
             itemCount: 5,
           ),
