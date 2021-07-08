@@ -19,11 +19,13 @@ class UserBloc extends BlocBase {
       _userController.add(_filter(search.trim()));
     }
   }
-  List<Map<String,dynamic>> _filter(String search){
-    List<Map<String,dynamic>>filteredUsers = List.from(_users.values.tolist());
-    filteredUsers.retainWhere((user){
+
+  List<Map<String, dynamic>> _filter(String search) {
+    List<Map<String, dynamic>> filteredUsers =
+        List.from(_users.values.toList());
+    filteredUsers.retainWhere((user) {
       return user['name'].toUpperCase().contains(search.toUpperCase());
-    })
+    });
     return filteredUsers;
   }
 
