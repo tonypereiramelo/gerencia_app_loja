@@ -57,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       body: SafeArea(
-        child: BlocProvider<UserBloc>(
+        child: BlocProvider(
           blocs: [Bloc((_) => _userBloc)],
           dependencies: [Dependency((_) => _userBloc)],
           child: PageView(
