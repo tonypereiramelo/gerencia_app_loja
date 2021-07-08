@@ -60,7 +60,6 @@ class _HomeScreenState extends State<HomeScreen> {
         child: BlocProvider<UserBloc>(
           blocs: [Bloc((_) => _userBloc)],
           dependencies: [Dependency((_) => _userBloc)],
-
           child: PageView(
             controller: _pageController,
             onPageChanged: (p) {
