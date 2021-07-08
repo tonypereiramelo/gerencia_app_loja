@@ -5,7 +5,7 @@ import 'package:rxdart/rxdart.dart';
 class UserBloc extends BlocBase {
   final _userController = BehaviorSubject();
   FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  Map<String, Map<String, dynamic>> = _users = {};
+  Map<String, Map<String, dynamic>> _users = {};
 
   @override
   void dispose() {
