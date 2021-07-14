@@ -48,7 +48,39 @@ class OrderTile extends StatelessWidget {
                         contentPadding: EdgeInsets.zero,
                       ),
                     ],
-                  )
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          'Excluir',
+                        ),
+                        style: TextButton.styleFrom(
+                          primary: Colors.red,
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          'Regredir',
+                        ),
+                        style: TextButton.styleFrom(
+                          primary: Colors.grey[850],
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          'Avançar',
+                        ),
+                        style: TextButton.styleFrom(
+                          primary: Colors.green,
+                        ),
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),
