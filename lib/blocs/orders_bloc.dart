@@ -4,7 +4,7 @@ import 'package:rxdart/rxdart.dart';
 
 class OrdersBloc extends BlocBase {
   final _ordersController = BehaviorSubject<List>();
-  Stream<List> get _outOrders => _ordersController.stream;
+  Stream<List> get outOrders => _ordersController.stream;
   FirebaseFirestore _firestore = FirebaseFirestore.instance;
   List<DocumentSnapshot> _orders = [];
 

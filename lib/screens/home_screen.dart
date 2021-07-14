@@ -1,5 +1,6 @@
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
+import 'package:gerencia_app_loja/blocs/orders_bloc.dart';
 import 'package:gerencia_app_loja/blocs/user_bloc.dart';
 import 'package:gerencia_app_loja/tabs/orders_tab.dart';
 import 'package:gerencia_app_loja/tabs/user_tab.dart';
@@ -15,12 +16,14 @@ class _HomeScreenState extends State<HomeScreen> {
   PageController? _pageController;
   int _page = 0;
   late UserBloc _userBloc;
+  late OrdersBloc _ordersBloc;
 
   @override
   void initState() {
     super.initState();
     _pageController = PageController();
     _userBloc = UserBloc();
+    _ordersBloc = OrdersBloc();
   }
 
   @override
@@ -59,8 +62,14 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: SafeArea(
         child: BlocProvider(
-          blocs: [Bloc((_) => _userBloc)],
-          dependencies: [Dependency((_) => _userBloc)],
+          blocs: [
+            Bloc((_) => _userBloc),
+            Bloc((_) => _ordersBloc),
+          ],
+          dependencies: [
+            Dependency((_) => _userBloc),
+            Dependency((_) => _ordersBloc)
+          ],
           child: PageView(
             controller: _pageController,
             onPageChanged: (p) {
