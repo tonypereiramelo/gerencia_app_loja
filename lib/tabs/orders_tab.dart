@@ -22,19 +22,20 @@ class OrdersTab extends StatelessWidget {
                   valueColor: AlwaysStoppedAnimation(Colors.pinkAccent),
                 ),
               );
-            else if (snapshot.data!.length == 0)
+            /* else if (snapshot.data!.length == 0)
               return Center(
                 child: Text(
                   'Nenhum pedido encontrado!',
                   style: TextStyle(color: Colors.pinkAccent),
                 ),
-              );
+              ); */
             else
-              return ListView.builder(
-                  itemCount: snapshot.data!.length,
-                  itemBuilder: (context, index) {
-                    return OrderTile();
-                  });
+              print(snapshot);
+            return ListView.builder(
+                itemCount: 6,
+                itemBuilder: (context, index) {
+                  return OrderTile();
+                });
           }),
     );
   }
