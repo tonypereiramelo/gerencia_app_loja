@@ -1,7 +1,7 @@
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
 import 'package:gerencia_app_loja/blocs/user_bloc.dart';
-import 'package:gerencia_app_loja/screens/orders_tab.dart';
+import 'package:gerencia_app_loja/tabs/orders_tab.dart';
 import 'package:gerencia_app_loja/tabs/user_tab.dart';
 
 class HomeScreen extends StatefulWidget {
