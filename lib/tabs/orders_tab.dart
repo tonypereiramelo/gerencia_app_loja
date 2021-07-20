@@ -13,7 +13,7 @@ class OrdersTab extends StatelessWidget {
       padding: EdgeInsets.symmetric(
         vertical: 16,
       ),
-      child: StreamBuilder<Object>(
+      child: StreamBuilder<List>(
           stream: _ordersBloc.outOrders,
           builder: (context, snapshot) {
             if (!snapshot.hasData)
@@ -22,17 +22,17 @@ class OrdersTab extends StatelessWidget {
                   valueColor: AlwaysStoppedAnimation(Colors.pinkAccent),
                 ),
               );
-            /* else if (snapshot.data!.length == 0)
+            else if (snapshot.data!.length == 0)
               return Center(
                 child: Text(
                   'Nenhum pedido encontrado!',
                   style: TextStyle(color: Colors.pinkAccent),
                 ),
-              ); */
+              );
             else
               print(snapshot);
             return ListView.builder(
-                itemCount: 6,
+                itemCount: snapshot.data!.length,
                 itemBuilder: (context, index) {
                   return OrderTile();
                 });
