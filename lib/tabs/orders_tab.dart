@@ -34,7 +34,7 @@ class OrdersTab extends StatelessWidget {
             return ListView.builder(
                 itemCount: snapshot.data!.length,
                 itemBuilder: (context, index) {
-                  return OrderTile();
+                  return OrderTile(snapshot.data![index]);
                 });
           }),
     );

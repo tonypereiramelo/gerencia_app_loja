@@ -1,8 +1,17 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:gerencia_app_loja/widgets/order_header.dart';
 
 class OrderTile extends StatelessWidget {
-  const OrderTile({Key? key}) : super(key: key);
+  OrderTile(this.order, {Key? key}) : super(key: key);
+  final DocumentSnapshot<Map> order;
+  final states = [
+    '',
+    'Em Preparação',
+    'Em Transporte',
+    'Aguardando Entrega',
+    'Entregue',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +23,11 @@ class OrderTile extends StatelessWidget {
       child: Card(
         child: ExpansionTile(
           title: Text(
-            '#123456 - Entregue',
+            '#${order.id} - ${states[order.data()!['status']]}',
             style: TextStyle(
-              color: Colors.green,
+              color: order.data()!['status'] != 4
+                  ? Colors.grey[850]
+                  : Colors.green,
             ),
           ),
           children: <Widget>[
@@ -32,25 +43,24 @@ class OrderTile extends StatelessWidget {
                 children: <Widget>[
                   OrderHeader(),
                   Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      ListTile(
-                        title: Text(
-                          'Camiseta Preta P',
-                        ),
-                        subtitle: Text(
-                          'Camisetas/dfsjkdhfk',
-                        ),
-                        trailing: Text(
-                          '2',
-                          style: TextStyle(
-                            fontSize: 20,
+                      mainAxisSize: MainAxisSize.min,
+                      children: order.data()!['products'].map<Widget>((p) {
+                        return ListTile(
+                          title: Text(
+                            p['product']['title'],
                           ),
-                        ),
-                        contentPadding: EdgeInsets.zero,
-                      ),
-                    ],
-                  ),
+                          subtitle: Text(
+                            p['category'] + '/' + p['pid'],
+                          ),
+                          trailing: Text(
+                            p['quantity'].toString(),
+                            style: TextStyle(
+                              fontSize: 20,
+                            ),
+                          ),
+                          contentPadding: EdgeInsets.zero,
+                        );
+                      }).toList()),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
