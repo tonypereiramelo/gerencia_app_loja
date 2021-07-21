@@ -1,5 +1,7 @@
+import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:gerencia_app_loja/blocs/user_bloc.dart';
 
 class OrderHeader extends StatelessWidget {
   OrderHeader(this.order, {Key? key}) : super(key: key);
@@ -7,6 +9,8 @@ class OrderHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _userBloc = BlocProvider.getBloc<UserBloc>();
+    final _user = _userBloc.getUser(order.data()!['clientId']);
     return Row(
       children: <Widget>[
         Expanded(
@@ -14,10 +18,10 @@ class OrderHeader extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                'Tony',
+                '${_user!['name']}',
               ),
               Text(
-                'Rua Paradaise',
+                '${_user['address']}',
               ),
             ],
           ),

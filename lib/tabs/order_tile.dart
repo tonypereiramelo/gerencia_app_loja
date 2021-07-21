@@ -22,6 +22,7 @@ class OrderTile extends StatelessWidget {
       ),
       child: Card(
         child: ExpansionTile(
+          key: Key(order.id),
           title: Text(
             '#${order.id} - ${states[order.data()!['status']]}',
             style: TextStyle(
@@ -65,7 +66,15 @@ class OrderTile extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          FirebaseFirestore.instance
+                              .collection("users")
+                              .doc(order['clientId'])
+                              .collection('orders')
+                              .doc(order.id)
+                              .delete();
+                          order.reference.delete();
+                        },
                         child: Text(
                           'Excluir',
                         ),
@@ -74,7 +83,15 @@ class OrderTile extends StatelessWidget {
                         ),
                       ),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          order.data()!['status'] > 1
+                              ? () {
+                                  order.reference.update(
+                                      {'status': order.data()!['status'] - 1});
+                                }()
+                              // ignore: unnecessary_statements
+                              : null;
+                        },
                         child: Text(
                           'Regredir',
                         ),
@@ -83,7 +100,15 @@ class OrderTile extends StatelessWidget {
                         ),
                       ),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          order.data()!['status'] < 4
+                              ? () {
+                                  order.reference.update(
+                                      {'status': order.data()!['status'] + 1});
+                                }()
+                              // ignore: unnecessary_statements
+                              : null;
+                        },
                         child: Text(
                           'Avançar',
                         ),
