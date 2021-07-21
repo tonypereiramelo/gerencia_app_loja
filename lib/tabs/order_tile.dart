@@ -41,7 +41,7 @@ class OrderTile extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-                  OrderHeader(),
+                  OrderHeader(order),
                   Column(
                       mainAxisSize: MainAxisSize.min,
                       children: order.data()!['products'].map<Widget>((p) {

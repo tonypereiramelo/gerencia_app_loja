@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class OrderHeader extends StatelessWidget {
-  const OrderHeader({Key? key}) : super(key: key);
+  OrderHeader(this.order, {Key? key}) : super(key: key);
+  final DocumentSnapshot<Map> order;
 
   @override
   Widget build(BuildContext context) {
@@ -24,13 +26,13 @@ class OrderHeader extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
             Text(
-              'Preço do produto',
+              'Produto: ${order.data()!['productPrice'].toStringAsFixed(2)}',
               style: TextStyle(
                 fontWeight: FontWeight.w500,
               ),
             ),
             Text(
-              'Preço total',
+              'Preço Total: ${order.data()!['totalPrice'].toStringAsFixed(2)}',
               style: TextStyle(
                 fontWeight: FontWeight.w800,
               ),
