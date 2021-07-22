@@ -27,6 +27,7 @@ class ProductScreen extends StatelessWidget {
       fontSize: 16,
     );
     return Scaffold(
+      backgroundColor: Colors.grey[850],
       appBar: AppBar(
         elevation: 0,
         title: Text('Criar Produto'),
