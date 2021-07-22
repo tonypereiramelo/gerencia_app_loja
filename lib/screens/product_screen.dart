@@ -5,7 +5,7 @@ import 'package:gerencia_app_loja/blocs/product_bloc.dart';
 class ProductScreen extends StatelessWidget {
   ProductScreen({
     required this.categoryId,
-    DocumentSnapshot<Map>? product,
+    DocumentSnapshot<Map<String, dynamic>>? product,
   })  : product = product,
         _productBloc = ProductBloc(categoryId: categoryId, product: product);
 

@@ -26,7 +26,7 @@ class CategoryTile extends StatelessWidget {
                 TextStyle(color: Colors.grey[850], fontWeight: FontWeight.w500),
           ),
           children: <Widget>[
-            FutureBuilder<QuerySnapshot<Map>>(
+            FutureBuilder<QuerySnapshot<Map<String, dynamic>>>(
                 future: category.reference.collection("items").get(),
                 builder: (context, snapshot) {
                   if (!snapshot.hasData) return Container();
