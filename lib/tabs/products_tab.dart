@@ -7,7 +7,7 @@ class ProductsTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<QuerySnapshot<Map<String,dynamic>>>(
+    return FutureBuilder<QuerySnapshot<Map<String, dynamic>>>(
         future: FirebaseFirestore.instance.collection("products").get(),
         builder: (context, snapshot) {
           if (!snapshot.hasData)
