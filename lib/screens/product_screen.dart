@@ -66,6 +66,7 @@ class ProductScreen extends StatelessWidget {
             TextFormField(
               style: _fieldStyle,
               decoration: _buildDecoration('Preço'),
+              keyboardType: TextInputType.numberWithOptions(decimal: true),
               onSaved: (t) {},
               validator: (t) {},
             ),
