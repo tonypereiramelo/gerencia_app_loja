@@ -8,13 +8,13 @@ class ProductBloc extends BlocBase {
   Stream<Map> get outData => _dataController.stream;
 
   String categoryId;
-  DocumentSnapshot<Map<String,dynamic>>? product;
+  DocumentSnapshot<Map<String, dynamic>>? product;
 
   late Map<String, dynamic> unsavedData;
 
   ProductBloc({required this.categoryId, this.product}) {
     if (product != null) {
-      unsavedData = Map.of(product!.data());
+      unsavedData = Map.of(product!.data()!);
     }
   }
 
