@@ -71,7 +71,7 @@ class ProductScreen extends StatelessWidget {
                     validator: (t) {},
                   ),
                   TextFormField(
-                    initialValue: snapshot.data!['price'].toStringAsFixed(2),
+                    initialValue: snapshot.data!['price']?.toStringAsFixed(2),
                     style: _fieldStyle,
                     decoration: _buildDecoration('Preço'),
                     keyboardType:
