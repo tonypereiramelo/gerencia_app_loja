@@ -15,7 +15,18 @@ class ProductBloc extends BlocBase {
   ProductBloc({required this.categoryId, this.product}) {
     if (product != null) {
       unsavedData = Map.of(product!.data()!);
+      unsavedData['images'] = List.of(product!.data()!['images']);
+      unsavedData['color'] = List.of(product!.data()!['color']);
+    } else {
+      unsavedData = {
+        'title': null,
+        'color': [],
+        'description': null,
+        'images': [],
+        'price': null,
+      };
     }
+    _dataController.add(unsavedData);
   }
 
   @override

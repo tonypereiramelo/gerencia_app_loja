@@ -48,31 +48,40 @@ class ProductScreen extends StatelessWidget {
       ),
       body: Form(
         key: _formKey,
-        child: ListView(
-          padding: EdgeInsets.all(16),
-          children: <Widget>[
-            TextFormField(
-              style: _fieldStyle,
-              decoration: _buildDecoration('Título'),
-              onSaved: (t) {},
-              validator: (t) {},
-            ),
-            TextFormField(
-              style: _fieldStyle,
-              maxLines: 6,
-              decoration: _buildDecoration('Descrição'),
-              onSaved: (t) {},
-              validator: (t) {},
-            ),
-            TextFormField(
-              style: _fieldStyle,
-              decoration: _buildDecoration('Preço'),
-              keyboardType: TextInputType.numberWithOptions(decimal: true),
-              onSaved: (t) {},
-              validator: (t) {},
-            ),
-          ],
-        ),
+        child: StreamBuilder<Map>(
+            stream: _productBloc.outData,
+            builder: (context, snapshot) {
+              if (!snapshot.hasData) return Container();
+              return ListView(
+                padding: EdgeInsets.all(16),
+                children: <Widget>[
+                  TextFormField(
+                    initialValue: snapshot.data!['title'],
+                    style: _fieldStyle,
+                    decoration: _buildDecoration('Título'),
+                    onSaved: (t) {},
+                    validator: (t) {},
+                  ),
+                  TextFormField(
+                    initialValue: snapshot.data!['description'],
+                    style: _fieldStyle,
+                    maxLines: 6,
+                    decoration: _buildDecoration('Descrição'),
+                    onSaved: (t) {},
+                    validator: (t) {},
+                  ),
+                  TextFormField(
+                    initialValue: snapshot.data!['price'].toStringAsFixed(2),
+                    style: _fieldStyle,
+                    decoration: _buildDecoration('Preço'),
+                    keyboardType:
+                        TextInputType.numberWithOptions(decimal: true),
+                    onSaved: (t) {},
+                    validator: (t) {},
+                  ),
+                ],
+              );
+            }),
       ),
     );
   }
