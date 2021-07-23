@@ -63,7 +63,12 @@ class ProductScreen extends StatelessWidget {
                       fontSize: 12,
                     ),
                   ),
-                  ImagesWidget(),
+                  ImagesWidget(
+                    context: context,
+                    initialValue: snapshot.data!["images"],
+                    onSaved: (l) {},
+                    validator: (l) {},
+                  ),
                   TextFormField(
                     initialValue: snapshot.data!['title'],
                     style: _fieldStyle,
