@@ -1,9 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:gerencia_app_loja/blocs/product_bloc.dart';
+import 'package:gerencia_app_loja/validators/product_validator.dart';
 import 'package:gerencia_app_loja/widgets/images_widget.dart';
 
-class ProductScreen extends StatelessWidget {
+class ProductScreen extends StatelessWidget with ProductValidator {
   ProductScreen({
     required this.categoryId,
     DocumentSnapshot<Map<String, dynamic>>? product,
@@ -67,14 +68,14 @@ class ProductScreen extends StatelessWidget {
                     context: context,
                     initialValue: snapshot.data!["images"],
                     onSaved: (l) {},
-                    validator: (l) {},
+                    validator: validateImages,
                   ),
                   TextFormField(
                     initialValue: snapshot.data!['title'],
                     style: _fieldStyle,
                     decoration: _buildDecoration('Título'),
                     onSaved: (t) {},
-                    validator: (t) {},
+                    validator: validatetitle,
                   ),
                   TextFormField(
                     initialValue: snapshot.data!['description'],
@@ -82,7 +83,7 @@ class ProductScreen extends StatelessWidget {
                     maxLines: 6,
                     decoration: _buildDecoration('Descrição'),
                     onSaved: (t) {},
-                    validator: (t) {},
+                    validator: validateDescription,
                   ),
                   TextFormField(
                     initialValue: snapshot.data!['price']?.toStringAsFixed(2),
@@ -91,7 +92,7 @@ class ProductScreen extends StatelessWidget {
                     keyboardType:
                         TextInputType.numberWithOptions(decimal: true),
                     onSaved: (t) {},
-                    validator: (t) {},
+                    validator: validatePrice,
                   ),
                 ],
               );
