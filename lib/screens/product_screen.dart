@@ -41,7 +41,9 @@ class ProductScreen extends StatelessWidget with ProductValidator {
             ),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              _formKey.currentState!.validate();
+            },
             icon: Icon(
               Icons.save,
             ),
