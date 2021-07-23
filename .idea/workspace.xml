@@ -22,10 +22,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c401e72c-b9ce-4469-b073-678fc7e76dba" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/lib/tabs/order_tile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/tabs/order_tile.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/order_header.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/order_header.dart" afterDir="false" />
-    </list>
+    <list default="true" id="c401e72c-b9ce-4469-b073-678fc7e76dba" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -77,9 +74,9 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="92" y="92" width="1182" height="544" key="AVDManager" timestamp="1626868010032">
+    <state x="92" y="92" width="1182" height="544" key="AVDManager" timestamp="1627044431018">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="92" y="92" width="1182" height="544" key="AVDManager/0.0.1366.728@0.0.1366.728" timestamp="1626868010032" />
+    <state x="92" y="92" width="1182" height="544" key="AVDManager/0.0.1366.728@0.0.1366.728" timestamp="1627044431018" />
   </component>
 </project>

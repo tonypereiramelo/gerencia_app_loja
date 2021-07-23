@@ -60,8 +60,8 @@ class ImagesWidget extends FormField<List> {
                                   builder: (context) => ImageSourceSheet(
                                         onImageSelected: (image) {
                                           state.didChange(
-                                            state.value!..add(image),
-                                          );
+                                              state.value!..add(image));
+                                          Navigator.of(context).pop();
                                         },
                                       ));
                             },
