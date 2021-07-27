@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gerencia_app_loja/blocs/product_bloc.dart';
 import 'package:gerencia_app_loja/validators/product_validator.dart';
 import 'package:gerencia_app_loja/widgets/images_widget.dart';
+import 'package:gerencia_app_loja/widgets/product_color.dart';
 
 class ProductScreen extends StatelessWidget with ProductValidator {
   ProductScreen({
@@ -128,6 +129,21 @@ class ProductScreen extends StatelessWidget with ProductValidator {
                             TextInputType.numberWithOptions(decimal: true),
                         onSaved: _productBloc.savePrice,
                         validator: validatePrice,
+                      ),
+                      SizedBox(
+                        height: 16,
+                      ),
+                      Text(
+                        'Cores',
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 12,
+                        ),
+                      ),
+                      ProductColor(
+                        initialValue: snapshot.data!['color'],
+                        onSaved: (c) {},
+                        validator: (c) {},
                       ),
                     ],
                   );
