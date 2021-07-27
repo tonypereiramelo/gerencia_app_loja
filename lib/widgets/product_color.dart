@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:gerencia_app_loja/widgets/add_color_dialog.dart';
 
 class ProductColor extends FormField<List> {
   ProductColor({
+    BuildContext? context,
     List? initialValue,
     FormFieldSetter<List>? onSaved,
     FormFieldValidator<List>? validator,
@@ -44,7 +46,13 @@ class ProductColor extends FormField<List> {
                     );
                   }).toList()
                     ..add(GestureDetector(
-                      onTap: () {},
+                      onTap: () async {
+                        String color = await showDialog(
+                            context: context!,
+                            builder: (context) => AddColorDialog());
+                        if (color.isNotEmpty)
+                          state.didChange(state.value!..add(color));
+                      },
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(

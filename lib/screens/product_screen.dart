@@ -141,6 +141,7 @@ class ProductScreen extends StatelessWidget with ProductValidator {
                         ),
                       ),
                       ProductColor(
+                        context: context,
                         initialValue: snapshot.data!['color'],
                         onSaved: (c) {},
                         validator: (c) {},
