@@ -32,14 +32,37 @@ class ProductScreen extends StatelessWidget with ProductValidator {
       backgroundColor: Colors.grey[850],
       appBar: AppBar(
         elevation: 0,
-        title: Text('Criar Produto'),
+        title: StreamBuilder<bool>(
+            stream: _productBloc.outCreated,
+            initialData: false,
+            builder: (context, snapshot) {
+              return Text(snapshot.data! ? 'Editar Produto' : 'Criar Produto');
+            }),
         actions: <Widget>[
-          IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.remove,
-            ),
-          ),
+          StreamBuilder<bool>(
+              stream: _productBloc.outCreated,
+              initialData: false,
+              builder: (context, snapshot) {
+                if (snapshot.data!)
+                  return StreamBuilder<bool>(
+                      stream: _productBloc.outLoading,
+                      initialData: false,
+                      builder: (context, snapshot) {
+                        return IconButton(
+                          onPressed: snapshot.data!
+                              ? null
+                              : () {
+                                  _productBloc.deleteProduct();
+                                  Navigator.of(context).pop();
+                                },
+                          icon: Icon(
+                            Icons.remove,
+                          ),
+                        );
+                      });
+                else
+                  return Container();
+              }),
           StreamBuilder<bool>(
               stream: _productBloc.outLoading,
               initialData: false,
