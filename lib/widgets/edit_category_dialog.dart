@@ -5,8 +5,11 @@ import 'package:gerencia_app_loja/blocs/category_bloc.dart';
 
 class EditCategoryDialog extends StatelessWidget {
   EditCategoryDialog({DocumentSnapshot<Map<String, dynamic>>? category})
-      : _categoryBloc = CategoryBloc(category);
+      : _categoryBloc = CategoryBloc(category),
+        _controller = TextEditingController(
+            text: category != null ? category.data()!['title'] : '');
   final CategoryBloc _categoryBloc;
+  final TextEditingController _controller;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +40,9 @@ class EditCategoryDialog extends StatelessWidget {
                         return Icon(Icons.image);
                     }),
               ),
-              title: TextField(),
+              title: TextField(
+                controller: _controller,
+              ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
