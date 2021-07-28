@@ -24,4 +24,9 @@ class ProductValidator {
     }
     return null;
   }
+
+  String? validateColor(List? color) {
+    if (color!.isEmpty) return 'Adicione uma cor!';
+    return null;
+  }
 }
