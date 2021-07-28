@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:gerencia_app_loja/blocs/category_bloc.dart';
@@ -16,7 +17,25 @@ class EditCategoryDialog extends StatelessWidget {
           children: <Widget>[
             ListTile(
               leading: GestureDetector(
-                child: CircleAvatar(),
+                child: StreamBuilder<dynamic>(
+                    stream: _categoryBloc.outImage,
+                    builder: (context, snapshot) {
+                      if (snapshot.data != null)
+                        return CircleAvatar(
+                          child: snapshot.data is File
+                              ? Image.file(
+                                  snapshot.data!,
+                                  fit: BoxFit.cover,
+                                )
+                              : Image.network(
+                                  snapshot.data!,
+                                  fit: BoxFit.cover,
+                                ),
+                          backgroundColor: Colors.transparent,
+                        );
+                      else
+                        return Icon(Icons.image);
+                    }),
               ),
               title: TextField(),
             ),
