@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:gerencia_app_loja/blocs/category_bloc.dart';
+import 'package:gerencia_app_loja/widgets/image_source_sheet.dart';
 
 class EditCategoryDialog extends StatelessWidget {
   EditCategoryDialog({DocumentSnapshot<Map<String, dynamic>>? category})
@@ -20,6 +21,16 @@ class EditCategoryDialog extends StatelessWidget {
           children: <Widget>[
             ListTile(
               leading: GestureDetector(
+                onTap: () {
+                  showModalBottomSheet(
+                    context: context,
+                    builder: (context) =>
+                        ImageSourceSheet(onImageSelected: (image) {
+                      Navigator.of(context).pop();
+                      _categoryBloc.setImage(image);
+                    }),
+                  );
+                },
                 child: StreamBuilder<dynamic>(
                     stream: _categoryBloc.outImage,
                     builder: (context, snapshot) {
@@ -40,9 +51,19 @@ class EditCategoryDialog extends StatelessWidget {
                         return Icon(Icons.image);
                     }),
               ),
-              title: TextField(
-                controller: _controller,
-              ),
+              title: StreamBuilder<String>(
+                  stream: _categoryBloc.outTitle,
+                  builder: (context, snapshot) {
+                    return TextField(
+                      controller: _controller,
+                      onChanged: _categoryBloc.setTitle,
+                      decoration: InputDecoration(
+                        errorText: snapshot.hasError
+                            ? snapshot.error.toString()
+                            : null,
+                      ),
+                    );
+                  }),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -59,13 +80,17 @@ class EditCategoryDialog extends StatelessWidget {
                         ),
                       );
                     }),
-                TextButton(
-                  onPressed: () {},
-                  child: Text('Salvar'),
-                  style: TextButton.styleFrom(
-                    primary: Colors.green,
-                  ),
-                ),
+                StreamBuilder<bool>(
+                    stream: _categoryBloc.outSubmitValid,
+                    builder: (context, snapshot) {
+                      return TextButton(
+                        onPressed: snapshot.hasData ? () {} : null,
+                        child: Text('Salvar'),
+                        style: TextButton.styleFrom(
+                          primary: Colors.green,
+                        ),
+                      );
+                    }),
               ],
             ),
           ],
