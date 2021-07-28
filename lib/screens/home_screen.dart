@@ -6,6 +6,7 @@ import 'package:gerencia_app_loja/blocs/user_bloc.dart';
 import 'package:gerencia_app_loja/tabs/orders_tab.dart';
 import 'package:gerencia_app_loja/tabs/products_tab.dart';
 import 'package:gerencia_app_loja/tabs/user_tab.dart';
+import 'package:gerencia_app_loja/widgets/edit_category_dialog.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -129,6 +130,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   _ordersBloc.setOrderCriteria(SortCriteria.READY_FIRST);
                 }),
           ],
+        );
+      case 2:
+        return FloatingActionButton(
+          onPressed: () {
+            showDialog(
+                context: context, builder: (context) => EditCategoryDialog());
+          },
+          child: Icon(Icons.add),
+          backgroundColor: Colors.pinkAccent,
         );
     }
   }

@@ -1,7 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:gerencia_app_loja/blocs/category_bloc.dart';
 
 class EditCategoryDialog extends StatelessWidget {
-  const EditCategoryDialog({Key? key}) : super(key: key);
+  EditCategoryDialog({DocumentSnapshot<Map<String, dynamic>>? category})
+      : _categoryBloc = CategoryBloc(category);
+  final CategoryBloc _categoryBloc;
 
   @override
   Widget build(BuildContext context) {
@@ -19,13 +23,18 @@ class EditCategoryDialog extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                TextButton(
-                  onPressed: () {},
-                  child: Text('Excluir'),
-                  style: TextButton.styleFrom(
-                    primary: Colors.red,
-                  ),
-                ),
+                StreamBuilder<bool>(
+                    stream: _categoryBloc.outDelete,
+                    builder: (context, snapshot) {
+                      if (!snapshot.hasData) return Container();
+                      return TextButton(
+                        onPressed: snapshot.data! ? () {} : null,
+                        child: Text('Excluir'),
+                        style: TextButton.styleFrom(
+                          primary: Colors.red,
+                        ),
+                      );
+                    }),
                 TextButton(
                   onPressed: () {},
                   child: Text('Salvar'),
