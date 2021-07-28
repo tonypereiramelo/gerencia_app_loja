@@ -73,7 +73,12 @@ class EditCategoryDialog extends StatelessWidget {
                     builder: (context, snapshot) {
                       if (!snapshot.hasData) return Container();
                       return TextButton(
-                        onPressed: snapshot.data! ? () {} : null,
+                        onPressed: snapshot.data!
+                            ? () {
+                                _categoryBloc.delete();
+                                Navigator.of(context).pop();
+                              }
+                            : null,
                         child: Text('Excluir'),
                         style: TextButton.styleFrom(
                           primary: Colors.red,
@@ -84,7 +89,12 @@ class EditCategoryDialog extends StatelessWidget {
                     stream: _categoryBloc.outSubmitValid,
                     builder: (context, snapshot) {
                       return TextButton(
-                        onPressed: snapshot.hasData ? () {} : null,
+                        onPressed: snapshot.hasData
+                            ? () async {
+                                await _categoryBloc.saveData();
+                                Navigator.of(context).pop();
+                              }
+                            : null,
                         child: Text('Salvar'),
                         style: TextButton.styleFrom(
                           primary: Colors.green,
